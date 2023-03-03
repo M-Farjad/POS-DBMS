@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yums_restaurant/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,6 +29,36 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   String pageActive = 'Home';
+
+  _pageView() {
+    switch (pageActive) {
+      case 'Home':
+        return const HomePage();
+        break;
+      case 'Menu':
+        return Container();
+        break;
+      case 'History':
+        return Container();
+        break;
+      case 'Promos':
+        return Container();
+        break;
+      case 'Settings':
+        return Container();
+        break;
+      default:
+        return HomePage();
+        break;
+    }
+  }
+
+  _setPage(String page) {
+    setState(() {
+      pageActive = page;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +74,20 @@ class _MainPageState extends State<MainPage> {
             ),
             height: MediaQuery.of(context).size.height,
             child: _sideMenu(),
+          ),
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.only(top: 24, right: 12),
+              padding: const EdgeInsets.only(top: 12, left: 12, right: 12),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+                color: Color(0xff17181f),
+              ),
+              child: _pageView(),
+            ),
           )
         ],
       ),
@@ -109,7 +154,7 @@ class _MainPageState extends State<MainPage> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 9),
       child: GestureDetector(
-        onTap: () {},
+        onTap: () => _setPage(menu),
         child: MouseRegion(
           cursor: SystemMouseCursors.click,
           child: AnimatedContainer(
