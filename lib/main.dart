@@ -34,22 +34,16 @@ class _MainPageState extends State<MainPage> {
     switch (pageActive) {
       case 'Home':
         return const HomePage();
-        break;
       case 'Menu':
         return Container();
-        break;
       case 'History':
         return Container();
-        break;
       case 'Promos':
         return Container();
-        break;
       case 'Settings':
         return Container();
-        break;
       default:
         return HomePage();
-        break;
     }
   }
 
